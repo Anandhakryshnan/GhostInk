@@ -14,6 +14,7 @@ import {
   Lock,
   ScanSearch,
   ShieldCheck,
+  Smile,
   Sparkles,
   Unlock,
   X,
@@ -47,6 +48,7 @@ import {
   stripAllHiddenChars,
 } from "@/lib/stego";
 import { CountdownText } from "./CountdownBadge";
+import { EmojiPicker } from "./EmojiPicker";
 
 const SAMPLE_COVERS = [
   "Hey! Just checking in on the deployment schedule for tomorrow morning.",
@@ -97,6 +99,7 @@ export function HidePanel({
     "ghostink.hide.emoji",
     "👻"
   );
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [coverText, setCoverText] = useSessionState("ghostink.hide.cover", "");
   const [sampleIndex, setSampleIndex] = useSessionState(
     "ghostink.hide.sampleIdx",
@@ -413,6 +416,18 @@ export function HidePanel({
               </div>
 
               <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowEmojiPicker((prev) => !prev)}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-[11px] font-mono transition-all cursor-pointer ${
+                    showEmojiPicker
+                      ? "bg-white text-black border-white font-semibold"
+                      : "bg-white/5 text-white/75 border-white/10 hover:border-white/30 hover:text-white"
+                  }`}
+                >
+                  <Smile className="w-3.5 h-3.5" />
+                  All Emojis
+                </button>
                 <span className="text-[11px] font-mono text-white/45 uppercase">
                   Custom:
                 </span>
@@ -427,6 +442,18 @@ export function HidePanel({
                 />
               </div>
             </div>
+
+            {showEmojiPicker && (
+              <EmojiPicker
+                singleCodepointOnly
+                selectedEmoji={carrierEmoji}
+                onSelect={(emoji) => {
+                  setCarrierEmoji(emoji);
+                  setShowEmojiPicker(false);
+                }}
+                onClose={() => setShowEmojiPicker(false)}
+              />
+            )}
 
             <div className="flex items-center gap-2 text-[11px] font-mono text-emerald-300/85">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />

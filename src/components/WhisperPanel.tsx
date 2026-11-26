@@ -11,6 +11,7 @@ import {
   FileText,
   Flame,
   Paperclip,
+  Plus,
   Radio,
   RefreshCw,
   Reply,
@@ -41,6 +42,7 @@ import {
 } from "@/lib/p2pWhisper";
 import { clearSessionKeys, useSessionState } from "@/lib/sessionPersist";
 import { CountdownText } from "./CountdownBadge";
+import { EmojiPicker } from "./EmojiPicker";
 
 interface WhisperPanelProps {
   onShowToast: (message: string) => void;
@@ -88,18 +90,6 @@ const WHISPER_SESSION_KEYS = [
 ];
 
 const QUICK_REACTIONS = ["👍", "❤️", "😂", "🔥", "😮", "👀"] as const;
-const COMPOSER_EMOJIS = [
-  "😀",
-  "😂",
-  "❤️",
-  "🔥",
-  "👍",
-  "👀",
-  "🎉",
-  "🔐",
-  "👻",
-  "✨",
-] as const;
 
 const MAX_FILE_BYTES = 4 * 1024 * 1024; // 4 MB
 
@@ -174,6 +164,9 @@ export function WhisperPanel({ onShowToast }: WhisperPanelProps) {
   const [activeReactionMsgId, setActiveReactionMsgId] = useState<string | null>(
     null
   );
+  const [expandedReactionMsgId, setExpandedReactionMsgId] = useState<
+    string | null
+  >(null);
   const [copiedToken, setCopiedToken] = useState(false);
 
   const pcRef = useRef<RTCPeerConnection | null>(null);
@@ -705,6 +698,7 @@ export function WhisperPanel({ onShowToast }: WhisperPanelProps) {
       })
     );
     setActiveReactionMsgId(null);
+    setExpandedReactionMsgId(null);
 
     if (phase === "connected") {
       void sendPayload({
@@ -1324,6 +1318,28 @@ export function WhisperPanel({ onShowToast }: WhisperPanelProps) {
                             {emoji}
                           </button>
                         ))}
+                        <button
+                          type="button"
+                          aria-label="More reaction emojis"
+                          onClick={() => {
+                            setActiveReactionMsgId(null);
+                            setExpandedReactionMsgId(msg.id);
+                          }}
+                          className="p-1 rounded-full hover:bg-white/10 text-white/60 hover:text-white cursor-pointer"
+                        >
+                          <Plus className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    )}
+
+                    {expandedReactionMsgId === msg.id && (
+                      <div className="mt-1.5 w-full max-w-sm">
+                        <EmojiPicker
+                          onSelect={(emoji) =>
+                            handleToggleReaction(msg.id, emoji)
+                          }
+                          onClose={() => setExpandedReactionMsgId(null)}
+                        />
                       </div>
                     )}
                   </div>
@@ -1398,20 +1414,12 @@ export function WhisperPanel({ onShowToast }: WhisperPanelProps) {
             </div>
           )}
 
-          {/* Emoji Picker Popover */}
+          {/* Full Searchable Emoji Picker Popover */}
           {showEmojiPicker && (
-            <div className="flex flex-wrap gap-1.5 rounded-2xl bg-neutral-900 border border-white/15 p-2.5">
-              {COMPOSER_EMOJIS.map((emoji) => (
-                <button
-                  key={emoji}
-                  type="button"
-                  onClick={() => handleDraftChange(`${draft}${emoji}`)}
-                  className="text-lg hover:scale-125 transition-transform px-1.5 py-0.5 cursor-pointer"
-                >
-                  {emoji}
-                </button>
-              ))}
-            </div>
+            <EmojiPicker
+              onSelect={(emoji) => handleDraftChange(`${draft}${emoji}`)}
+              onClose={() => setShowEmojiPicker(false)}
+            />
           )}
 
           {/* Composer Bar */}
