@@ -71,19 +71,19 @@ interface LiveTelemetry {
 }
 
 const STRENGTH_BAR_COLORS: Record<number, string> = {
-  0: "bg-white/10",
+  0: "bg-black/[0.06] dark:bg-white/10",
   1: "bg-rose-400",
   2: "bg-amber-400",
   3: "bg-emerald-400",
-  4: "bg-white",
+  4: "bg-neutral-900 dark:bg-white",
 };
 
 const STRENGTH_TEXT_COLORS: Record<number, string> = {
-  0: "text-white/40",
-  1: "text-rose-400",
-  2: "text-amber-300",
-  3: "text-emerald-400",
-  4: "text-white",
+  0: "text-neutral-400 dark:text-white/40",
+  1: "text-rose-600 dark:text-rose-400",
+  2: "text-amber-700 dark:text-amber-300",
+  3: "text-emerald-600 dark:text-emerald-400",
+  4: "text-neutral-900 dark:text-white",
 };
 
 export function HidePanel({
@@ -314,14 +314,14 @@ export function HidePanel({
                 ? "hide-cover-text"
                 : "hide-custom-emoji"
             }
-            className="text-xs font-mono uppercase tracking-widest text-white/60"
+            className="text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-white/60"
           >
             01 / Carrier (
             {encoding === "emoji-vs" ? "Single Emoji" : "Cover Text"})
           </label>
 
           <div className="flex items-center gap-2">
-            <div className="inline-flex rounded-full bg-white/5 border border-white/10 p-0.5">
+            <div className="inline-flex rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 p-0.5">
               <button
                 type="button"
                 onClick={() => {
@@ -330,8 +330,8 @@ export function HidePanel({
                 }}
                 className={`px-3 py-1 rounded-full text-[11px] font-mono transition-all cursor-pointer ${
                   encoding === "zero-width"
-                    ? "bg-white text-black font-semibold"
-                    : "text-white/60 hover:text-white"
+                    ? "bg-neutral-900 text-white dark:bg-white dark:text-black font-semibold"
+                    : "text-neutral-600 dark:text-white/60 hover:text-neutral-950 dark:hover:text-white"
                 }`}
               >
                 Text Cover
@@ -344,8 +344,8 @@ export function HidePanel({
                 }}
                 className={`px-3 py-1 rounded-full text-[11px] font-mono transition-all cursor-pointer ${
                   encoding === "emoji-vs"
-                    ? "bg-white text-black font-semibold"
-                    : "text-white/60 hover:text-white"
+                    ? "bg-neutral-900 text-white dark:bg-white dark:text-black font-semibold"
+                    : "text-neutral-600 dark:text-white/60 hover:text-neutral-950 dark:hover:text-white"
                 }`}
               >
                 Single Emoji
@@ -356,7 +356,7 @@ export function HidePanel({
               <button
                 type="button"
                 onClick={handleCycleSampleCover}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono uppercase tracking-wider text-white/70 hover:text-white hover:border-white/25 hover:bg-white/10 transition-all cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 text-[11px] font-mono uppercase tracking-wider text-neutral-600 dark:text-white/70 hover:text-neutral-950 dark:hover:text-white hover:border-black/20 dark:border-white/25 hover:bg-black/[0.06] dark:bg-white/10 transition-all cursor-pointer"
               >
                 <Sparkles className="w-3 h-3" />
                 Sample
@@ -373,19 +373,19 @@ export function HidePanel({
               value={coverText}
               onChange={(e) => setCoverText(e.target.value)}
               placeholder="Enter your message..."
-              className="w-full rounded-2xl bg-black/40 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/35 focus:bg-black/60 transition-all resize-y subtle-scroll"
+              className="w-full rounded-2xl bg-white/80 dark:bg-black/40 border border-black/10 dark:border-white/10 px-4 py-3 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-400 dark:text-white/30 focus:outline-none focus:border-black/30 dark:border-white/35 focus:bg-neutral-100/90 dark:bg-black/60 transition-all resize-y subtle-scroll"
             />
             <div className="flex items-center gap-2 text-[11px] font-mono">
               {survival.status === "optimal" ? (
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
               ) : (
-                <AlertTriangle className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <AlertTriangle className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 shrink-0" />
               )}
               <span
                 className={
                   survival.status === "optimal"
-                    ? "text-emerald-300/80"
-                    : "text-amber-300/80"
+                    ? "text-emerald-700 dark:text-emerald-300/80"
+                    : "text-amber-700 dark:text-amber-300/80"
                 }
               >
                 {survival.message}
@@ -393,7 +393,7 @@ export function HidePanel({
             </div>
           </>
         ) : (
-          <div className="rounded-2xl bg-black/40 border border-white/10 p-4 space-y-3">
+          <div className="rounded-2xl bg-white/80 dark:bg-black/40 border border-black/10 dark:border-white/10 p-4 space-y-3">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex flex-wrap items-center gap-2">
                 {CARRIER_EMOJIS.map((emoji) => {
@@ -405,8 +405,8 @@ export function HidePanel({
                       onClick={() => setCarrierEmoji(emoji)}
                       className={`w-10 h-10 rounded-xl text-xl flex items-center justify-center border transition-all cursor-pointer ${
                         selected
-                          ? "bg-white/15 border-white shadow-[0_0_20px_rgba(255,255,255,0.16)] scale-105"
-                          : "bg-white/[0.03] border-white/10 hover:border-white/30 hover:bg-white/10"
+                          ? "bg-black/10 dark:bg-white/15 border-neutral-900 dark:border-white shadow-[0_0_20px_rgba(255,255,255,0.16)] scale-105"
+                          : "bg-black/[0.03] dark:bg-white/[0.03] border-black/10 dark:border-white/10 hover:border-black/25 dark:border-white/30 hover:bg-black/[0.06] dark:bg-white/10"
                       }`}
                     >
                       {emoji}
@@ -421,14 +421,14 @@ export function HidePanel({
                   onClick={() => setShowEmojiPicker((prev) => !prev)}
                   className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-[11px] font-mono transition-all cursor-pointer ${
                     showEmojiPicker
-                      ? "bg-white text-black border-white font-semibold"
-                      : "bg-white/5 text-white/75 border-white/10 hover:border-white/30 hover:text-white"
+                      ? "bg-neutral-900 text-white dark:bg-white dark:text-black border-neutral-900 dark:border-white font-semibold"
+                      : "bg-black/[0.04] dark:bg-white/5 text-neutral-700 dark:text-white/75 border-black/10 dark:border-white/10 hover:border-black/25 dark:border-white/30 hover:text-neutral-950 dark:hover:text-white"
                   }`}
                 >
                   <Smile className="w-3.5 h-3.5" />
                   All Emojis
                 </button>
-                <span className="text-[11px] font-mono text-white/45 uppercase">
+                <span className="text-[11px] font-mono text-neutral-500 dark:text-white/45 uppercase">
                   Custom:
                 </span>
                 <input
@@ -438,7 +438,7 @@ export function HidePanel({
                   onChange={(e) => setCarrierEmoji(e.target.value)}
                   maxLength={8}
                   aria-label="Custom carrier emoji"
-                  className="w-16 text-center text-lg rounded-xl bg-black/60 border border-white/15 py-1.5 text-white focus:outline-none focus:border-white/40"
+                  className="w-16 text-center text-lg rounded-xl bg-neutral-100/90 dark:bg-black/60 border border-black/15 dark:border-white/15 py-1.5 text-neutral-900 dark:text-white focus:outline-none focus:border-black/35 dark:border-white/40"
                 />
               </div>
             </div>
@@ -455,8 +455,8 @@ export function HidePanel({
               />
             )}
 
-            <div className="flex items-center gap-2 text-[11px] font-mono text-emerald-300/85">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+            <div className="flex items-center gap-2 text-[11px] font-mono text-emerald-700 dark:text-emerald-300/85">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
               <span>
                 Variation Selectors (U+FE00–U+FE0F) bind directly to 1 emoji as a single grapheme (2 chars/B — 50% shorter).
               </span>
@@ -470,11 +470,11 @@ export function HidePanel({
         <div className="flex items-center justify-between gap-3">
           <label
             htmlFor="hide-secret-text"
-            className="text-xs font-mono uppercase tracking-widest text-white/60"
+            className="text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-white/60"
           >
             02 / Secret Message
           </label>
-          <span className="text-[11px] font-mono text-white/40">
+          <span className="text-[11px] font-mono text-neutral-400 dark:text-white/40">
             UTF-8 • deflate-raw
           </span>
         </div>
@@ -484,28 +484,28 @@ export function HidePanel({
           value={secret}
           onChange={(e) => setSecret(e.target.value)}
           placeholder="Type or paste the confidential message, API token, or note to conceal..."
-          className="w-full rounded-2xl bg-black/40 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/35 focus:bg-black/60 transition-all resize-y subtle-scroll"
+          className="w-full rounded-2xl bg-white/80 dark:bg-black/40 border border-black/10 dark:border-white/10 px-4 py-3 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-400 dark:text-white/30 focus:outline-none focus:border-black/30 dark:border-white/35 focus:bg-neutral-100/90 dark:bg-black/60 transition-all resize-y subtle-scroll"
         />
       </div>
 
       {/* Encryption Mode, Passphrase & Self-Destruct TTL */}
-      <div className="rounded-2xl bg-white/[0.03] border border-white/10 p-4 md:p-5 space-y-4">
+      <div className="rounded-2xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/10 dark:border-white/10 p-4 md:p-5 space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-white/5 border border-white/10 text-white/80">
+            <div className="p-2 rounded-xl bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 text-neutral-700 dark:text-white/80">
               {noPassword ? (
-                <Unlock className="w-4 h-4 text-amber-300" />
+                <Unlock className="w-4 h-4 text-amber-700 dark:text-amber-300" />
               ) : (
-                <Lock className="w-4 h-4 text-emerald-400" />
+                <Lock className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               )}
             </div>
             <div>
-              <p className="text-sm font-medium text-white">
+              <p className="text-sm font-medium text-neutral-900 dark:text-white">
                 {noPassword
                   ? "Quick Hide (No Password)"
                   : `${activeCipherMeta.label} + PBKDF2 (250k)`}
               </p>
-              <p className="text-xs text-white/50 font-mono">
+              <p className="text-xs text-neutral-500 dark:text-white/50 font-mono">
                 {noPassword
                   ? `Header ${activeVersionLabel} • Compression + Base-4 encoding`
                   : `Header ${activeVersionLabel} • ${activeCipherMeta.description}`}
@@ -521,21 +521,21 @@ export function HidePanel({
               setNoPassword((prev) => !prev);
               setError(null);
             }}
-            className="inline-flex items-center gap-2.5 self-start sm:self-center px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:border-white/25 transition-all cursor-pointer"
+            className="inline-flex items-center gap-2.5 self-start sm:self-center px-3 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 hover:border-black/20 dark:border-white/25 transition-all cursor-pointer"
           >
-            <span className="text-[11px] font-mono uppercase tracking-wider text-white/70">
+            <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-600 dark:text-white/70">
               No Password
             </span>
             <span
               className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
-                noPassword ? "bg-white" : "bg-white/15"
+                noPassword ? "bg-neutral-900 dark:bg-white" : "bg-black/10 dark:bg-white/15"
               }`}
             >
               <span
                 className={`inline-block h-3.5 w-3.5 rounded-full transition-transform ${
                   noPassword
-                    ? "translate-x-4.5 bg-black"
-                    : "translate-x-1 bg-white/80"
+                    ? "translate-x-4.5 bg-white dark:bg-black"
+                    : "translate-x-1 bg-neutral-500 dark:bg-white/80"
                 }`}
               />
             </span>
@@ -564,8 +564,8 @@ export function HidePanel({
                         onClick={() => setAlgorithm(cipher.id)}
                         className={`text-left rounded-xl px-3.5 py-2.5 border transition-all cursor-pointer ${
                           selected
-                            ? "bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.12)]"
-                            : "bg-black/40 text-white/75 border-white/10 hover:border-white/25 hover:text-white"
+                            ? "bg-neutral-900 text-white dark:bg-white dark:text-black border-neutral-900 dark:border-white shadow-[0_0_20px_rgba(255,255,255,0.12)]"
+                            : "bg-white/80 dark:bg-black/40 text-neutral-700 dark:text-white/75 border-black/10 dark:border-white/10 hover:border-black/20 dark:border-white/25 hover:text-neutral-950 dark:hover:text-white"
                         }`}
                       >
                         <p className="text-xs font-mono font-semibold tracking-wide">
@@ -573,7 +573,7 @@ export function HidePanel({
                         </p>
                         <p
                           className={`text-[10px] font-mono mt-0.5 ${
-                            selected ? "text-black/70" : "text-white/45"
+                            selected ? "text-black/70" : "text-neutral-500 dark:text-white/45"
                           }`}
                         >
                           {cipher.description}
@@ -591,13 +591,13 @@ export function HidePanel({
                     onChange={(e) => setPassphrase(e.target.value)}
                     placeholder="Enter strong encryption passphrase..."
                     autoComplete="new-password"
-                    className="w-full rounded-xl bg-black/50 border border-white/10 pl-4 pr-11 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/35 transition-all"
+                    className="w-full rounded-xl bg-white/90 dark:bg-black/50 border border-black/10 dark:border-white/10 pl-4 pr-11 py-3 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-400 dark:text-white/30 focus:outline-none focus:border-black/30 dark:border-white/35 transition-all"
                   />
                   <button
                     type="button"
                     aria-label={showPassphrase ? "Hide passphrase" : "Show passphrase"}
                     onClick={() => setShowPassphrase((prev) => !prev)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg text-white/50 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg text-neutral-500 dark:text-white/50 hover:text-neutral-950 dark:hover:text-white hover:bg-black/[0.06] dark:bg-white/10 transition-colors cursor-pointer"
                   >
                     {showPassphrase ? (
                       <EyeOff className="w-4 h-4" />
@@ -616,7 +616,7 @@ export function HidePanel({
                         className={`h-1 rounded-full transition-colors duration-300 ${
                           strength.score >= level
                             ? STRENGTH_BAR_COLORS[strength.score]
-                            : "bg-white/10"
+                            : "bg-black/[0.06] dark:bg-white/10"
                         }`}
                       />
                     ))}
@@ -635,12 +635,12 @@ export function HidePanel({
         </AnimatePresence>
 
         {/* Self-Destruct TTL Selector */}
-        <div className="pt-3 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="flex items-center gap-2 text-xs text-white/70">
-            <Clock className="w-3.5 h-3.5 text-white/60" />
+        <div className="pt-3 border-t border-black/10 dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-2 text-xs text-neutral-600 dark:text-white/70">
+            <Clock className="w-3.5 h-3.5 text-neutral-600 dark:text-white/60" />
             <span>Self-Destruct TTL</span>
             {activeTtl.seconds > 0 && (
-              <span className="text-[10px] font-mono text-emerald-400">
+              <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400">
                 (authenticated)
               </span>
             )}
@@ -656,8 +656,8 @@ export function HidePanel({
                   onClick={() => setTtlPreset(preset.id)}
                   className={`px-3 py-1 rounded-full text-[11px] font-mono transition-all cursor-pointer border ${
                     selected
-                      ? "bg-white text-black border-white font-semibold"
-                      : "bg-white/5 text-white/65 border-white/10 hover:text-white hover:border-white/25"
+                      ? "bg-neutral-900 text-white dark:bg-white dark:text-black border-neutral-900 dark:border-white font-semibold"
+                      : "bg-black/[0.04] dark:bg-white/5 text-neutral-600 dark:text-white/65 border-black/10 dark:border-white/10 hover:text-neutral-950 dark:hover:text-white hover:border-black/20 dark:border-white/25"
                   }`}
                 >
                   {preset.label}
@@ -669,13 +669,13 @@ export function HidePanel({
       </div>
 
       {/* Live Payload Telemetry & Platform Limit Guard */}
-      <div className="rounded-2xl bg-black/50 border border-white/10 px-4 py-3.5 space-y-3.5">
+      <div className="rounded-2xl bg-white/90 dark:bg-black/50 border border-black/10 dark:border-white/10 px-4 py-3.5 space-y-3.5">
         <div className="flex items-center justify-between">
-          <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/45">
+          <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500 dark:text-white/45">
             Live Payload Telemetry
           </span>
           {telemetry.originalBytes > 0 && (
-            <span className="text-[10px] font-mono text-white/50">
+            <span className="text-[10px] font-mono text-neutral-500 dark:text-white/50">
               {compressionRatio >= 0
                 ? `${compressionRatio}% deflate savings`
                 : `+${Math.abs(compressionRatio)}% deflate framing`}
@@ -684,47 +684,47 @@ export function HidePanel({
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <div className="rounded-xl bg-white/[0.03] border border-white/5 px-3 py-2">
-            <p className="text-[10px] font-mono uppercase tracking-wider text-white/45">
+          <div className="rounded-xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/5 dark:border-white/5 px-3 py-2">
+            <p className="text-[10px] font-mono uppercase tracking-wider text-neutral-500 dark:text-white/45">
               Original Secret
             </p>
-            <p className="text-sm font-mono font-semibold text-white mt-0.5">
+            <p className="text-sm font-mono font-semibold text-neutral-900 dark:text-white mt-0.5">
               {telemetry.originalBytes} B
             </p>
           </div>
-          <div className="rounded-xl bg-white/[0.03] border border-white/5 px-3 py-2">
-            <p className="text-[10px] font-mono uppercase tracking-wider text-white/45">
+          <div className="rounded-xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/5 dark:border-white/5 px-3 py-2">
+            <p className="text-[10px] font-mono uppercase tracking-wider text-neutral-500 dark:text-white/45">
               Compressed
             </p>
-            <p className="text-sm font-mono font-semibold text-white mt-0.5">
+            <p className="text-sm font-mono font-semibold text-neutral-900 dark:text-white mt-0.5">
               {telemetry.compressedBytes} B
             </p>
           </div>
-          <div className="rounded-xl bg-white/[0.03] border border-white/5 px-3 py-2">
-            <p className="text-[10px] font-mono uppercase tracking-wider text-white/45">
+          <div className="rounded-xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/5 dark:border-white/5 px-3 py-2">
+            <p className="text-[10px] font-mono uppercase tracking-wider text-neutral-500 dark:text-white/45">
               Framed ({activeVersionLabel})
             </p>
-            <p className="text-sm font-mono font-semibold text-white mt-0.5">
+            <p className="text-sm font-mono font-semibold text-neutral-900 dark:text-white mt-0.5">
               {telemetry.framedBytes} B
             </p>
           </div>
-          <div className="rounded-xl bg-white/[0.03] border border-white/5 px-3 py-2">
-            <p className="text-[10px] font-mono uppercase tracking-wider text-white/45">
+          <div className="rounded-xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/5 dark:border-white/5 px-3 py-2">
+            <p className="text-[10px] font-mono uppercase tracking-wider text-neutral-500 dark:text-white/45">
               {encoding === "emoji-vs" ? "Variation Selectors" : "Invisible Chars"}
             </p>
-            <p className="text-sm font-mono font-semibold text-emerald-400 mt-0.5">
+            <p className="text-sm font-mono font-semibold text-emerald-600 dark:text-emerald-400 mt-0.5">
               {telemetry.hiddenCharCount.toLocaleString()}
             </p>
           </div>
         </div>
 
         {/* Platform Limit & Survival Guard */}
-        <div className="pt-2.5 border-t border-white/10 space-y-2">
+        <div className="pt-2.5 border-t border-black/10 dark:border-white/10 space-y-2">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-white/45">
+            <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-neutral-500 dark:text-white/45">
               Platform Limit Guard
             </span>
-            <span className="text-[11px] font-mono text-white/60">
+            <span className="text-[11px] font-mono text-neutral-600 dark:text-white/60">
               {totalProjectedChars.toLocaleString()} total chars
             </span>
           </div>
@@ -736,8 +736,8 @@ export function HidePanel({
                 title={`${platform.name}: ${totalProjectedChars.toLocaleString()} / ${platform.limit.toLocaleString()} chars`}
                 className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full border text-[10px] font-mono transition-colors ${
                   platform.fits
-                    ? "bg-emerald-500/10 border-emerald-500/25 text-emerald-300"
-                    : "bg-rose-500/10 border-rose-500/25 text-rose-300"
+                    ? "bg-emerald-500/10 border-emerald-500/25 text-emerald-700 dark:text-emerald-300"
+                    : "bg-rose-500/10 border-rose-500/25 text-rose-700 dark:text-rose-300"
                 }`}
               >
                 {platform.fits ? (
@@ -764,9 +764,9 @@ export function HidePanel({
             initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
-            className="flex items-start gap-2.5 rounded-2xl bg-rose-500/10 border border-rose-500/30 px-4 py-3 text-sm text-rose-200"
+            className="flex items-start gap-2.5 rounded-2xl bg-rose-500/10 border border-rose-500/30 px-4 py-3 text-sm text-rose-800 dark:text-rose-200"
           >
-            <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+            <AlertCircle className="w-4 h-4 text-rose-600 dark:text-rose-400 shrink-0 mt-0.5" />
             <span>{error}</span>
           </motion.div>
         )}
@@ -777,11 +777,11 @@ export function HidePanel({
         <button
           type="submit"
           disabled={isProcessing}
-          className="group relative inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-white text-black text-sm font-semibold tracking-wide shadow-[0_0_30px_rgba(255,255,255,0.16)] hover:shadow-[0_0_50px_rgba(255,255,255,0.32)] hover:scale-[1.01] active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none transition-all cursor-pointer"
+          className="group relative inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black text-sm font-semibold tracking-wide shadow-lg shadow-black/15 hover:shadow-xl dark:shadow-[0_0_30px_rgba(255,255,255,0.16)] dark:hover:shadow-[0_0_50px_rgba(255,255,255,0.32)] hover:scale-[1.01] active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none transition-all cursor-pointer"
         >
           {isProcessing ? (
             <>
-              <span className="w-4 h-4 border-2 border-black/25 border-t-black rounded-full animate-spin" />
+              <span className="w-4 h-4 border-2 border-black/20 dark:border-white/25 border-t-white dark:border-black/25 dark:border-t-black rounded-full animate-spin" />
               <span>Deriving Key &amp; Embedding...</span>
             </>
           ) : (
@@ -802,7 +802,7 @@ export function HidePanel({
         </button>
 
         {result && (
-          <span className="text-xs font-mono text-white/50">
+          <span className="text-xs font-mono text-neutral-500 dark:text-white/50">
             Payload ready • {result.hiddenCharCount.toLocaleString()}{" "}
             {result.encoding === "emoji-vs"
               ? "variation selectors"
@@ -820,7 +820,7 @@ export function HidePanel({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}
             transition={{ duration: 0.25 }}
-            className="rounded-3xl bg-white/[0.04] border border-white/15 p-5 space-y-4"
+            className="rounded-3xl bg-black/[0.03] dark:bg-white/[0.04] border border-black/15 dark:border-white/15 p-5 space-y-4"
           >
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center gap-2">
@@ -828,11 +828,11 @@ export function HidePanel({
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
-                <span className="text-xs font-mono uppercase tracking-widest text-white/80">
+                <span className="text-xs font-mono uppercase tracking-widest text-neutral-700 dark:text-white/80">
                   Stego Output (Ready to Share)
                 </span>
                 {result.expiresAt !== null && (
-                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-[10px] font-mono text-emerald-300">
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-[10px] font-mono text-emerald-700 dark:text-emerald-300">
                     <Clock className="w-2.5 h-2.5" />
                     <CountdownText
                       expiresAt={result.expiresAt}
@@ -845,7 +845,7 @@ export function HidePanel({
               <button
                 type="button"
                 onClick={handleCopyOutput}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-black text-xs font-semibold uppercase tracking-wider hover:bg-white/90 active:scale-95 transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black text-xs font-semibold uppercase tracking-wider hover:bg-neutral-800 dark:hover:bg-white/90 active:scale-95 transition-all cursor-pointer"
               >
                 {copied ? (
                   <>
@@ -862,7 +862,7 @@ export function HidePanel({
             </div>
 
             <div
-              className={`rounded-2xl bg-black/60 border border-white/10 p-4 text-white/90 break-words select-all font-sans ${
+              className={`rounded-2xl bg-neutral-100/90 dark:bg-black/60 border border-black/10 dark:border-white/10 p-4 text-neutral-800 dark:text-white/90 break-words select-all font-sans ${
                 result.encoding === "emoji-vs"
                   ? "text-4xl text-center py-5 tracking-normal"
                   : "text-sm leading-relaxed"
@@ -872,7 +872,7 @@ export function HidePanel({
             </div>
 
             <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
-              <p className="text-[11px] font-mono text-white/45">
+              <p className="text-[11px] font-mono text-neutral-500 dark:text-white/45">
                 {result.originalBytes} B raw → {result.compressedBytes} B compressed →{" "}
                 {result.framedBytes} B framed ({result.hiddenCharCount}{" "}
                 {result.encoding === "emoji-vs" ? "VS selectors" : "ZW chars"})
@@ -881,14 +881,14 @@ export function HidePanel({
                 <button
                   type="button"
                   onClick={() => onHandoffReveal(result.stegoText)}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono uppercase tracking-wider text-white/75 hover:text-white hover:border-white/25 transition-all cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 text-[11px] font-mono uppercase tracking-wider text-neutral-700 dark:text-white/75 hover:text-neutral-950 dark:hover:text-white hover:border-black/20 dark:border-white/25 transition-all cursor-pointer"
                 >
                   Test in Reveal
                 </button>
                 <button
                   type="button"
                   onClick={() => onHandoffXRay(result.stegoText)}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono uppercase tracking-wider text-white/75 hover:text-white hover:border-white/25 transition-all cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 text-[11px] font-mono uppercase tracking-wider text-neutral-700 dark:text-white/75 hover:text-neutral-950 dark:hover:text-white hover:border-black/20 dark:border-white/25 transition-all cursor-pointer"
                 >
                   <ScanSearch className="w-3 h-3" />
                   Inspect X-Ray

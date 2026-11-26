@@ -51,23 +51,23 @@ export function EmojiPicker({
   }, [categories, activeCategoryId, query]);
 
   return (
-    <div className="rounded-2xl bg-neutral-950/95 border border-white/15 p-3 shadow-2xl backdrop-blur-xl space-y-2.5">
+    <div className="rounded-2xl bg-white/95 dark:bg-neutral-950/95 border border-black/15 dark:border-white/15 p-3 shadow-2xl backdrop-blur-xl space-y-2.5">
       {/* Search + Close */}
       <div className="flex items-center gap-2">
         <div className="relative flex-1">
-          <Search className="w-3.5 h-3.5 text-white/40 absolute left-3 top-1/2 -translate-y-1/2" />
+          <Search className="w-3.5 h-3.5 text-neutral-400 dark:text-white/40 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search emojis (ghost, lock, fire, heart...)"
-            className="w-full rounded-xl bg-white/5 border border-white/10 pl-8 pr-7 py-1.5 text-xs text-white placeholder:text-white/35 focus:outline-none focus:border-white/30"
+            className="w-full rounded-xl bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 pl-8 pr-7 py-1.5 text-xs text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-400 dark:text-white/35 focus:outline-none focus:border-black/25 dark:border-white/30"
           />
           {query && (
             <button
               type="button"
               onClick={() => setQuery("")}
-              className="absolute right-2 top-1/2 -translate-y-1/2 text-white/45 hover:text-white cursor-pointer"
+              className="absolute right-2 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-white/45 hover:text-neutral-950 dark:hover:text-white cursor-pointer"
             >
               <X className="w-3 h-3" />
             </button>
@@ -78,7 +78,7 @@ export function EmojiPicker({
             type="button"
             onClick={onClose}
             aria-label="Close emoji picker"
-            className="p-1.5 rounded-xl bg-white/5 border border-white/10 text-white/60 hover:text-white cursor-pointer"
+            className="p-1.5 rounded-xl bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 text-neutral-600 dark:text-white/60 hover:text-neutral-950 dark:hover:text-white cursor-pointer"
           >
             <X className="w-3.5 h-3.5" />
           </button>
@@ -98,8 +98,8 @@ export function EmojiPicker({
                 title={cat.label}
                 className={`shrink-0 inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-mono border transition-colors cursor-pointer ${
                   active
-                    ? "bg-white text-black border-white font-semibold"
-                    : "bg-white/5 text-white/65 border-white/10 hover:text-white"
+                    ? "bg-neutral-900 text-white dark:bg-white dark:text-black border-neutral-900 dark:border-white font-semibold"
+                    : "bg-black/[0.04] dark:bg-white/5 text-neutral-600 dark:text-white/65 border-black/10 dark:border-white/10 hover:text-neutral-950 dark:hover:text-white"
                 }`}
               >
                 <span>{cat.icon}</span>
@@ -113,7 +113,7 @@ export function EmojiPicker({
       {/* Emoji Grid */}
       <div className="max-h-48 overflow-y-auto subtle-scroll pr-0.5">
         {visibleItems.length === 0 ? (
-          <p className="text-xs font-mono text-white/40 text-center py-6">
+          <p className="text-xs font-mono text-neutral-400 dark:text-white/40 text-center py-6">
             No emojis match &ldquo;{query}&rdquo;
           </p>
         ) : (
@@ -128,8 +128,8 @@ export function EmojiPicker({
                   onClick={() => onSelect(item.char)}
                   className={`h-9 rounded-xl text-lg flex items-center justify-center transition-all cursor-pointer ${
                     isSelected
-                      ? "bg-white/20 border border-white scale-105"
-                      : "hover:bg-white/10 active:scale-95"
+                      ? "bg-black/15 dark:bg-white/20 border border-neutral-900 dark:border-white scale-105"
+                      : "hover:bg-black/[0.06] dark:bg-white/10 active:scale-95"
                   }`}
                 >
                   {item.char}

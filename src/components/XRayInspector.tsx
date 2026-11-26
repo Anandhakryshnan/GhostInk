@@ -30,10 +30,10 @@ interface XRayInspectorProps {
 }
 
 const BADGE_STYLES: Record<ZeroWidthSymbol, string> = {
-  ZWSP: "bg-emerald-500/15 text-emerald-300 border-emerald-500/35",
-  ZWNJ: "bg-sky-500/15 text-sky-300 border-sky-500/35",
-  ZWJ: "bg-amber-500/15 text-amber-300 border-amber-500/35",
-  WJ: "bg-violet-500/15 text-violet-300 border-violet-500/35",
+  ZWSP: "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/35",
+  ZWNJ: "bg-sky-500/15 text-sky-700 dark:text-sky-300 border-sky-500/35",
+  ZWJ: "bg-amber-500/15 text-amber-700 dark:text-amber-300 border-amber-500/35",
+  WJ: "bg-violet-500/15 text-violet-700 dark:text-violet-300 border-violet-500/35",
 };
 
 const LEGEND_ITEMS: Array<{
@@ -128,7 +128,7 @@ export function XRayInspector({
         <div className="flex flex-wrap items-center justify-between gap-2">
           <label
             htmlFor="xray-input"
-            className="text-xs font-mono uppercase tracking-widest text-white/60"
+            className="text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-white/60"
           >
             01 / Text to Inspect (Steganalysis)
           </label>
@@ -136,7 +136,7 @@ export function XRayInspector({
             <button
               type="button"
               onClick={handlePaste}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono uppercase tracking-wider text-white/70 hover:text-white hover:border-white/25 hover:bg-white/10 transition-all cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 text-[11px] font-mono uppercase tracking-wider text-neutral-600 dark:text-white/70 hover:text-neutral-950 dark:hover:text-white hover:border-black/20 dark:border-white/25 hover:bg-black/[0.06] dark:bg-white/10 transition-all cursor-pointer"
             >
               <ClipboardPaste className="w-3 h-3" />
               Paste
@@ -148,7 +148,7 @@ export function XRayInspector({
                   onInputChange("");
                   setShowAllTokens(false);
                 }}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono uppercase tracking-wider text-white/55 hover:text-white hover:border-white/25 transition-all cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 text-[11px] font-mono uppercase tracking-wider text-neutral-500 dark:text-white/55 hover:text-neutral-950 dark:hover:text-white hover:border-black/20 dark:border-white/25 transition-all cursor-pointer"
               >
                 <Trash2 className="w-3 h-3" />
                 Clear
@@ -165,46 +165,46 @@ export function XRayInspector({
             setShowAllTokens(false);
           }}
           placeholder="Paste any suspicious text to reveal invisible ZWSP, ZWNJ, ZWJ, and WJ code points..."
-          className="w-full rounded-2xl bg-black/40 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/35 focus:bg-black/60 transition-all resize-y subtle-scroll"
+          className="w-full rounded-2xl bg-white/80 dark:bg-black/40 border border-black/10 dark:border-white/10 px-4 py-3 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-400 dark:text-white/30 focus:outline-none focus:border-black/30 dark:border-white/35 focus:bg-neutral-100/90 dark:bg-black/60 transition-all resize-y subtle-scroll"
         />
       </div>
 
       {/* Telemetry Summary Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div className="rounded-2xl bg-white/[0.03] border border-white/10 px-4 py-3">
-          <p className="text-[10px] font-mono uppercase tracking-widest text-white/45">
+        <div className="rounded-2xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/10 dark:border-white/10 px-4 py-3">
+          <p className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 dark:text-white/45">
             Visible Chars
           </p>
-          <p className="text-lg font-mono font-semibold text-white mt-1">
+          <p className="text-lg font-mono font-semibold text-neutral-900 dark:text-white mt-1">
             {analysis.visibleChars.toLocaleString()}
           </p>
         </div>
 
-        <div className="rounded-2xl bg-white/[0.03] border border-white/10 px-4 py-3">
-          <p className="text-[10px] font-mono uppercase tracking-widest text-white/45">
+        <div className="rounded-2xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/10 dark:border-white/10 px-4 py-3">
+          <p className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 dark:text-white/45">
             Hidden Chars
           </p>
           <p
             className={`text-lg font-mono font-semibold mt-1 ${
-              analysis.hiddenChars > 0 ? "text-amber-300" : "text-white/70"
+              analysis.hiddenChars > 0 ? "text-amber-700 dark:text-amber-300" : "text-neutral-600 dark:text-white/70"
             }`}
           >
             {analysis.hiddenChars.toLocaleString()}
           </p>
         </div>
 
-        <div className="rounded-2xl bg-white/[0.03] border border-white/10 px-4 py-3">
-          <p className="text-[10px] font-mono uppercase tracking-widest text-white/45">
+        <div className="rounded-2xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/10 dark:border-white/10 px-4 py-3">
+          <p className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 dark:text-white/45">
             Raw Payload
           </p>
           <div className="flex items-baseline gap-2 mt-1">
-            <p className="text-lg font-mono font-semibold text-white">
+            <p className="text-lg font-mono font-semibold text-neutral-900 dark:text-white">
               {analysis.rawPayloadBytes} B
             </p>
             {analysis.hiddenChars > 0 && (
               <span
                 className={`text-[10px] font-mono uppercase ${
-                  analysis.isAligned ? "text-emerald-400" : "text-rose-400"
+                  analysis.isAligned ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"
                 }`}
               >
                 {analysis.isAligned ? "aligned" : "skewed"}
@@ -213,11 +213,11 @@ export function XRayInspector({
           </div>
         </div>
 
-        <div className="rounded-2xl bg-white/[0.03] border border-white/10 px-4 py-3">
-          <p className="text-[10px] font-mono uppercase tracking-widest text-white/45">
+        <div className="rounded-2xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/10 dark:border-white/10 px-4 py-3">
+          <p className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 dark:text-white/45">
             Header Version
           </p>
-          <p className="text-sm sm:text-base font-mono font-semibold text-white mt-1.5 truncate">
+          <p className="text-sm sm:text-base font-mono font-semibold text-neutral-900 dark:text-white mt-1.5 truncate">
             {headerVersionLabel}
           </p>
         </div>
@@ -228,15 +228,15 @@ export function XRayInspector({
         <div
           className={`flex flex-wrap items-center justify-between gap-2 rounded-2xl border px-4 py-2.5 text-xs font-mono ${
             analysis.edgeExposed
-              ? "bg-amber-500/10 border-amber-500/30 text-amber-200"
-              : "bg-emerald-500/10 border-emerald-500/25 text-emerald-200"
+              ? "bg-amber-500/10 border-amber-500/30 text-amber-800 dark:text-amber-200"
+              : "bg-emerald-500/10 border-emerald-500/25 text-emerald-800 dark:text-emerald-200"
           }`}
         >
           <div className="flex items-center gap-2">
             {analysis.edgeExposed ? (
-              <AlertTriangle className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+              <AlertTriangle className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 shrink-0" />
             ) : (
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
             )}
             <span>
               {analysis.edgeExposed
@@ -246,7 +246,7 @@ export function XRayInspector({
                   : "Survival Guard: hidden payload is safely anchored inside visible text."}
             </span>
           </div>
-          <span className="text-white/70">
+          <span className="text-neutral-600 dark:text-white/70">
             Fits {platformFitsCount}/7 platforms ({input.length.toLocaleString()} chars)
           </span>
         </div>
@@ -268,7 +268,7 @@ export function XRayInspector({
             </span>
           ))}
           {analysis.vsChars > 0 && (
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-[11px] font-mono bg-cyan-500/15 text-cyan-300 border-cyan-500/35">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-[11px] font-mono bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 border-cyan-500/35">
               <span>[VS1–16]</span>
               <span className="opacity-65">U+FE00..0F</span>
               <span className="opacity-90 font-semibold">
@@ -283,7 +283,7 @@ export function XRayInspector({
             type="button"
             onClick={handleStrip}
             disabled={analysis.hiddenChars === 0}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-black text-xs font-semibold uppercase tracking-wider hover:bg-white/90 active:scale-95 disabled:opacity-35 disabled:pointer-events-none transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black text-xs font-semibold uppercase tracking-wider hover:bg-neutral-800 dark:hover:bg-white/90 active:scale-95 disabled:opacity-35 disabled:pointer-events-none transition-all cursor-pointer"
           >
             <Eraser className="w-3.5 h-3.5" />
             Strip Hidden Characters
@@ -293,7 +293,7 @@ export function XRayInspector({
             <button
               type="button"
               onClick={handleCopySanitized}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/15 text-white text-xs font-semibold uppercase tracking-wider hover:bg-white/15 transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/[0.06] dark:bg-white/10 border border-black/15 dark:border-white/15 text-neutral-900 dark:text-white text-xs font-semibold uppercase tracking-wider hover:bg-black/10 dark:bg-white/15 transition-all cursor-pointer"
             >
               {copiedClean ? (
                 <>
@@ -312,22 +312,22 @@ export function XRayInspector({
       </div>
 
       {/* Inline X-Ray Viewport */}
-      <div className="rounded-3xl bg-black/55 border border-white/10 p-5 space-y-3">
+      <div className="rounded-3xl bg-neutral-50/90 dark:bg-black/55 border border-black/10 dark:border-white/10 p-5 space-y-3">
         <div className="flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-white/60">
-            <ScanSearch className="w-3.5 h-3.5 text-white/70" />
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-white/60">
+            <ScanSearch className="w-3.5 h-3.5 text-neutral-600 dark:text-white/70" />
             <span>Inline Code-Point X-Ray Stream</span>
           </div>
-          <span className="text-[11px] font-mono text-white/40">
+          <span className="text-[11px] font-mono text-neutral-400 dark:text-white/40">
             {analysis.hiddenChars > 0
               ? "Invisible glyphs exposed inline"
               : "Clean stream"}
           </span>
         </div>
 
-        <div className="min-h-[140px] max-h-[340px] overflow-y-auto subtle-scroll rounded-2xl bg-neutral-950/80 border border-white/5 p-4 text-sm leading-7 text-white/90 break-words">
+        <div className="min-h-[140px] max-h-[340px] overflow-y-auto subtle-scroll rounded-2xl bg-neutral-50 dark:bg-neutral-950/80 border border-black/5 dark:border-white/5 p-4 text-sm leading-7 text-neutral-800 dark:text-white/90 break-words">
           {input.length === 0 ? (
-            <p className="text-white/30 font-mono text-xs">
+            <p className="text-neutral-400 dark:text-white/30 font-mono text-xs">
               Paste text above or generate a stego message in the Hide tab to inspect its anchored zero-width structure...
             </p>
           ) : (
@@ -352,7 +352,7 @@ export function XRayInspector({
                   <span
                     key={idx}
                     title={`${seg.codePoint} (nibble ${seg.nibble})`}
-                    className="inline-flex items-center mx-0.5 px-1.5 py-0.5 rounded-md border font-mono text-[10px] leading-none align-middle select-none bg-cyan-500/15 text-cyan-300 border-cyan-500/35"
+                    className="inline-flex items-center mx-0.5 px-1.5 py-0.5 rounded-md border font-mono text-[10px] leading-none align-middle select-none bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 border-cyan-500/35"
                   >
                     [{seg.symbol}]
                   </span>
@@ -363,7 +363,7 @@ export function XRayInspector({
                 <button
                   type="button"
                   onClick={() => setShowAllTokens(true)}
-                  className="ml-2 inline-flex items-center px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-mono text-white hover:bg-white/20 transition-colors cursor-pointer"
+                  className="ml-2 inline-flex items-center px-3 py-1 rounded-full bg-black/[0.06] dark:bg-white/10 border border-black/15 dark:border-white/20 text-xs font-mono text-neutral-900 dark:text-white hover:bg-black/15 dark:bg-white/20 transition-colors cursor-pointer"
                 >
                   +{hiddenRemaining.toLocaleString()} more tokens (Show all)
                 </button>

@@ -145,7 +145,7 @@ export function RevealPanel({
         <div className="flex flex-wrap items-center justify-between gap-2">
           <label
             htmlFor="reveal-stego-input"
-            className="text-xs font-mono uppercase tracking-widest text-white/60"
+            className="text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-white/60"
           >
             01 / Paste Suspect or Stego Text
           </label>
@@ -153,7 +153,7 @@ export function RevealPanel({
             <button
               type="button"
               onClick={handlePaste}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono uppercase tracking-wider text-white/70 hover:text-white hover:border-white/25 hover:bg-white/10 transition-all cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 text-[11px] font-mono uppercase tracking-wider text-neutral-600 dark:text-white/70 hover:text-neutral-950 dark:hover:text-white hover:border-black/20 dark:border-white/25 hover:bg-black/[0.06] dark:bg-white/10 transition-all cursor-pointer"
             >
               <ClipboardPaste className="w-3 h-3" />
               Paste
@@ -162,7 +162,7 @@ export function RevealPanel({
               <button
                 type="button"
                 onClick={handleClear}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono uppercase tracking-wider text-white/55 hover:text-white hover:border-white/25 transition-all cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 text-[11px] font-mono uppercase tracking-wider text-neutral-500 dark:text-white/55 hover:text-neutral-950 dark:hover:text-white hover:border-black/20 dark:border-white/25 transition-all cursor-pointer"
               >
                 <Trash2 className="w-3 h-3" />
                 Clear
@@ -180,7 +180,7 @@ export function RevealPanel({
             setRevealed(null);
           }}
           placeholder="Paste text received from chat, email, or social media..."
-          className="w-full rounded-2xl bg-black/40 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/35 focus:bg-black/60 transition-all resize-y subtle-scroll"
+          className="w-full rounded-2xl bg-white/80 dark:bg-black/40 border border-black/10 dark:border-white/10 px-4 py-3 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-400 dark:text-white/30 focus:outline-none focus:border-black/30 dark:border-white/35 focus:bg-neutral-100/90 dark:bg-black/60 transition-all resize-y subtle-scroll"
         />
       </div>
 
@@ -195,30 +195,30 @@ export function RevealPanel({
             transition={{ duration: 0.2 }}
             className={`rounded-2xl border px-4 py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
               detection.status === "encrypted"
-                ? "bg-white/[0.05] border-white/20"
+                ? "bg-black/[0.04] dark:bg-white/[0.05] border-black/15 dark:border-white/20"
                 : detection.status === "unencrypted"
                   ? "bg-emerald-500/10 border-emerald-500/30"
                   : detection.status === "corrupted"
                     ? "bg-amber-500/10 border-amber-500/30"
-                    : "bg-white/[0.02] border-white/10"
+                    : "bg-black/[0.02] dark:bg-white/[0.02] border-black/10 dark:border-white/10"
             }`}
           >
             <div className="flex items-start sm:items-center gap-3">
               {detection.status === "encrypted" && (
-                <Lock className="w-4 h-4 text-white shrink-0 mt-0.5 sm:mt-0" />
+                <Lock className="w-4 h-4 text-neutral-900 dark:text-white shrink-0 mt-0.5 sm:mt-0" />
               )}
               {detection.status === "unencrypted" && (
-                <Unlock className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5 sm:mt-0" />
+                <Unlock className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5 sm:mt-0" />
               )}
               {detection.status === "corrupted" && (
-                <ShieldAlert className="w-4 h-4 text-amber-400 shrink-0 mt-0.5 sm:mt-0" />
+                <ShieldAlert className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5 sm:mt-0" />
               )}
               {detection.status === "none" && (
-                <AlertCircle className="w-4 h-4 text-white/40 shrink-0 mt-0.5 sm:mt-0" />
+                <AlertCircle className="w-4 h-4 text-neutral-400 dark:text-white/40 shrink-0 mt-0.5 sm:mt-0" />
               )}
 
               <div>
-                <p className="text-sm font-medium text-white">
+                <p className="text-sm font-medium text-neutral-900 dark:text-white">
                   {detection.status === "encrypted" &&
                     `Encrypted Payload Detected (Header ${versionBadge})`}
                   {detection.status === "unencrypted" &&
@@ -227,7 +227,7 @@ export function RevealPanel({
                     "Damaged or Misaligned Zero-Width Sequence"}
                   {detection.status === "none" && "No Hidden Payload Found"}
                 </p>
-                <p className="text-xs text-white/55 font-mono mt-0.5">
+                <p className="text-xs text-neutral-500 dark:text-white/55 font-mono mt-0.5">
                   {detection.status === "encrypted" &&
                     `${detection.hiddenCharCount.toLocaleString()} ${
                       detection.encoding === "emoji-vs"
@@ -263,12 +263,12 @@ export function RevealPanel({
             {detection.hasPayload && (
               <div className="self-start sm:self-center flex items-center gap-2 shrink-0">
                 {detection.hasTtl && (
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-[10px] font-mono uppercase tracking-wider text-amber-300">
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-[10px] font-mono uppercase tracking-wider text-amber-700 dark:text-amber-300">
                     <Clock className="w-2.5 h-2.5" />
                     TTL
                   </span>
                 )}
-                <span className="px-3 py-1 rounded-full bg-black/50 border border-white/10 text-[10px] font-mono uppercase tracking-widest text-white/80">
+                <span className="px-3 py-1 rounded-full bg-white/90 dark:bg-black/50 border border-black/10 dark:border-white/10 text-[10px] font-mono uppercase tracking-widest text-neutral-700 dark:text-white/80">
                   {versionBadge}
                 </span>
               </div>
@@ -291,7 +291,7 @@ export function RevealPanel({
             <div className="space-y-2.5 pt-1">
               <label
                 htmlFor="reveal-passphrase-input"
-                className="block text-xs font-mono uppercase tracking-widest text-white/60"
+                className="block text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-white/60"
               >
                 02 / Decryption Passphrase
               </label>
@@ -306,13 +306,13 @@ export function RevealPanel({
                   }}
                   placeholder="Enter the passphrase used to lock this message..."
                   autoComplete="current-password"
-                  className="w-full rounded-xl bg-black/50 border border-white/10 pl-4 pr-11 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/35 transition-all"
+                  className="w-full rounded-xl bg-white/90 dark:bg-black/50 border border-black/10 dark:border-white/10 pl-4 pr-11 py-3 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-400 dark:text-white/30 focus:outline-none focus:border-black/30 dark:border-white/35 transition-all"
                 />
                 <button
                   type="button"
                   aria-label={showPassphrase ? "Hide passphrase" : "Show passphrase"}
                   onClick={() => setShowPassphrase((prev) => !prev)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg text-white/50 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg text-neutral-500 dark:text-white/50 hover:text-neutral-950 dark:hover:text-white hover:bg-black/[0.06] dark:bg-white/10 transition-colors cursor-pointer"
                 >
                   {showPassphrase ? (
                     <EyeOff className="w-4 h-4" />
@@ -335,14 +335,14 @@ export function RevealPanel({
             exit={{ opacity: 0, y: -6 }}
             className={`flex items-start gap-2.5 rounded-2xl border px-4 py-3 text-sm ${
               error.isExpired
-                ? "bg-amber-500/10 border-amber-500/35 text-amber-200"
-                : "bg-rose-500/10 border-rose-500/30 text-rose-200"
+                ? "bg-amber-500/10 border-amber-500/35 text-amber-800 dark:text-amber-200"
+                : "bg-rose-500/10 border-rose-500/30 text-rose-800 dark:text-rose-200"
             }`}
           >
             {error.isExpired ? (
-              <TimerOff className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+              <TimerOff className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
             ) : (
-              <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+              <AlertCircle className="w-4 h-4 text-rose-600 dark:text-rose-400 shrink-0 mt-0.5" />
             )}
             <span>{error.message}</span>
           </motion.div>
@@ -354,11 +354,11 @@ export function RevealPanel({
         <button
           type="submit"
           disabled={isDecrypting || !stegoInput.length}
-          className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-white text-black text-sm font-semibold tracking-wide shadow-[0_0_30px_rgba(255,255,255,0.16)] hover:shadow-[0_0_50px_rgba(255,255,255,0.32)] hover:scale-[1.01] active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none transition-all cursor-pointer"
+          className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black text-sm font-semibold tracking-wide shadow-lg shadow-black/15 hover:shadow-xl dark:shadow-[0_0_30px_rgba(255,255,255,0.16)] dark:hover:shadow-[0_0_50px_rgba(255,255,255,0.32)] hover:scale-[1.01] active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none transition-all cursor-pointer"
         >
           {isDecrypting ? (
             <>
-              <span className="w-4 h-4 border-2 border-black/25 border-t-black rounded-full animate-spin" />
+              <span className="w-4 h-4 border-2 border-black/20 dark:border-white/25 border-t-white dark:border-black/25 dark:border-t-black rounded-full animate-spin" />
               <span>Deriving Key &amp; Verifying Tag...</span>
             </>
           ) : (
@@ -382,16 +382,16 @@ export function RevealPanel({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}
             transition={{ duration: 0.25 }}
-            className="rounded-3xl bg-white/[0.04] border border-white/15 p-5 space-y-4"
+            className="rounded-3xl bg-black/[0.03] dark:bg-white/[0.04] border border-black/15 dark:border-white/15 p-5 space-y-4"
           >
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-                <span className="text-xs font-mono uppercase tracking-widest text-white/85">
+                <span className="text-xs font-mono uppercase tracking-widest text-neutral-800 dark:text-white/85">
                   Revealed Secret
                 </span>
                 {revealed.expiresAt !== null && (
-                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-[10px] font-mono text-amber-300">
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-[10px] font-mono text-amber-700 dark:text-amber-300">
                     <Clock className="w-2.5 h-2.5" />
                     <CountdownText
                       expiresAt={revealed.expiresAt}
@@ -404,7 +404,7 @@ export function RevealPanel({
               <button
                 type="button"
                 onClick={handleCopySecret}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-black text-xs font-semibold uppercase tracking-wider hover:bg-white/90 active:scale-95 transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black text-xs font-semibold uppercase tracking-wider hover:bg-neutral-800 dark:hover:bg-white/90 active:scale-95 transition-all cursor-pointer"
               >
                 {copied ? (
                   <>
@@ -420,11 +420,11 @@ export function RevealPanel({
               </button>
             </div>
 
-            <div className="rounded-2xl bg-black/60 border border-white/10 p-4 text-sm text-white whitespace-pre-wrap break-words font-sans leading-relaxed select-all">
+            <div className="rounded-2xl bg-neutral-100/90 dark:bg-black/60 border border-black/10 dark:border-white/10 p-4 text-sm text-neutral-900 dark:text-white whitespace-pre-wrap break-words font-sans leading-relaxed select-all">
               {revealed.secret}
             </div>
 
-            <p className="text-[11px] font-mono text-white/45">
+            <p className="text-[11px] font-mono text-neutral-500 dark:text-white/45">
               Verified{" "}
               {revealed.version === VERSION_CTR_HMAC_TTL
                 ? "AES-256-CTR + HMAC-SHA256 + TTL (0x05)"

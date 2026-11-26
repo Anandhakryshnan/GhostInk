@@ -18,6 +18,7 @@ import { ChessPanel } from "./ChessPanel";
 import { HidePanel } from "./HidePanel";
 import { RevealPanel } from "./RevealPanel";
 import { ShamirPanel } from "./ShamirPanel";
+import { ThemeToggle } from "./ThemeToggle";
 import { WhisperPanel } from "./WhisperPanel";
 import { XRayInspector } from "./XRayInspector";
 
@@ -102,8 +103,8 @@ export function StegoWorkspace() {
 
   return (
     <div className="relative min-h-screen flex flex-col bg-background text-foreground overflow-x-clip">
-      {/* Subtle Film Grain Overlay matching reference portfolio */}
-      <div className="pointer-events-none fixed inset-0 z-50 h-full w-full opacity-[0.03] mix-blend-difference">
+      {/* Subtle Film Grain Overlay */}
+      <div className="pointer-events-none fixed inset-0 z-50 h-full w-full opacity-[0.025] dark:opacity-[0.03] mix-blend-difference">
         <svg className="absolute inset-0 h-full w-full" aria-hidden="true">
           <filter id="stegoNoiseFilter">
             <feTurbulence
@@ -117,25 +118,14 @@ export function StegoWorkspace() {
         </svg>
       </div>
 
-      {/* Radial Dot Matrix Grid matching reference portfolio */}
-      <div
-        className="fixed inset-0 z-0 pointer-events-none opacity-[0.4]"
-        style={{
-          backgroundImage:
-            "radial-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px)",
-          backgroundSize: "2rem 2rem",
-          maskImage:
-            "radial-gradient(ellipse at center, black 10%, transparent 80%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse at center, black 10%, transparent 80%)",
-        }}
-      />
+      {/* Adaptive Radial Dot Matrix Grid */}
+      <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.45] dark:opacity-[0.4] dot-matrix-bg" />
 
       {/* Floating Glass Pill Header */}
       <header className="sticky top-0 z-40 px-4 sm:px-6 pt-5 pb-2">
-        <div className="mx-auto max-w-4xl flex items-center justify-between gap-4 px-4 sm:px-6 py-2.5 rounded-full bg-white/5 border border-white/10 shadow-2xl backdrop-blur-xl">
+        <div className="mx-auto max-w-4xl flex items-center justify-between gap-4 px-4 sm:px-6 py-2.5 rounded-full bg-white/75 dark:bg-white/5 border border-black/10 dark:border-white/10 shadow-xl dark:shadow-2xl backdrop-blur-xl">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-white/10 border border-white/15 flex items-center justify-center text-white">
+            <div className="w-8 h-8 rounded-full bg-black/[0.06] dark:bg-white/10 border border-black/10 dark:border-white/15 flex items-center justify-center text-neutral-900 dark:text-white">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -151,7 +141,7 @@ export function StegoWorkspace() {
                 />
                 <path
                   d="M15 10h.01"
-                  stroke="#34d399"
+                  stroke="#10b981"
                   strokeWidth="2.6"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -165,14 +155,17 @@ export function StegoWorkspace() {
                 />
               </svg>
             </div>
-            <span className="text-sm font-bold tracking-tight text-white">
+            <span className="text-sm font-bold tracking-tight text-neutral-900 dark:text-white">
               GhostInk
             </span>
           </div>
 
-          <span className="text-[11px] font-medium tracking-wide text-white/60">
-            Invisible Ink • End-to-End Encrypted
-          </span>
+          <div className="flex items-center gap-3">
+            <span className="hidden sm:inline text-[11px] font-medium tracking-wide text-neutral-600 dark:text-white/60">
+              Invisible Ink • End-to-End Encrypted
+            </span>
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
@@ -185,12 +178,14 @@ export function StegoWorkspace() {
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-10 space-y-3"
         >
-          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-white">
+          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-neutral-900 dark:text-white">
             Invisible Unicode{" "}
-            <span className="text-white/50 font-light">Steganography.</span>
+            <span className="text-neutral-400 dark:text-white/50 font-light">
+              Steganography.
+            </span>
           </h1>
 
-          <p className="max-w-2xl mx-auto text-sm sm:text-base text-white/55 font-normal leading-relaxed">
+          <p className="max-w-2xl mx-auto text-sm sm:text-base text-neutral-600 dark:text-white/55 font-normal leading-relaxed">
             Zero-width steganography, single-emoji cloaking, Shamir split-key
             shards, legal chess PGN ciphers, and ephemeral WebRTC whispers—100%
             inside your browser.
@@ -199,18 +194,18 @@ export function StegoWorkspace() {
 
         {/* Secure Context / API Guard Warning */}
         {cryptoWarning && (
-          <div className="mb-6 flex items-start gap-3 rounded-2xl bg-amber-500/10 border border-amber-500/30 px-4 py-3 text-sm text-amber-200">
-            <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+          <div className="mb-6 flex items-start gap-3 rounded-2xl bg-amber-500/10 border border-amber-500/30 px-4 py-3 text-sm text-amber-800 dark:text-amber-200">
+            <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
             <span>{cryptoWarning}</span>
           </div>
         )}
 
-        {/* Segmented Pill Tab Switcher (Portfolio Interactive-Zone Style) */}
+        {/* Segmented Pill Tab Switcher */}
         <div className="flex justify-center mb-6">
           <div
             role="tablist"
             aria-label="GhostInk Workspace Tabs"
-            className="inline-flex flex-wrap justify-center gap-1 bg-white/5 p-1.5 rounded-3xl sm:rounded-full border border-white/10 backdrop-blur-xl shadow-xl"
+            className="inline-flex flex-wrap justify-center gap-1 bg-white/80 dark:bg-white/5 p-1.5 rounded-3xl sm:rounded-full border border-black/10 dark:border-white/10 backdrop-blur-xl shadow-lg dark:shadow-xl"
           >
             {TABS.map((tab) => {
               const Icon = tab.icon;
@@ -224,8 +219,8 @@ export function StegoWorkspace() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`relative z-10 inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-colors duration-200 cursor-pointer ${
                     isActive
-                      ? "text-black"
-                      : "text-white/60 hover:text-white"
+                      ? "text-white dark:text-black"
+                      : "text-neutral-600 hover:text-neutral-950 dark:text-white/60 dark:hover:text-white"
                   }`}
                 >
                   {isActive && (
@@ -236,7 +231,7 @@ export function StegoWorkspace() {
                         stiffness: 420,
                         damping: 32,
                       }}
-                      className="absolute inset-0 bg-white rounded-full -z-10 shadow-[0_0_25px_rgba(255,255,255,0.25)]"
+                      className="absolute inset-0 bg-neutral-900 dark:bg-white rounded-full -z-10 shadow-md dark:shadow-[0_0_25px_rgba(255,255,255,0.25)]"
                     />
                   )}
                   <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -343,16 +338,16 @@ export function StegoWorkspace() {
           href="https://anandhakrishnan-portfolio.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
-          className="group inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs text-white/45 hover:text-white/90 hover:bg-white/[0.04] transition-all duration-300"
+          className="group inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs text-neutral-500 dark:text-white/45 hover:text-neutral-900 dark:hover:text-white/90 hover:bg-black/[0.04] dark:hover:bg-white/[0.04] transition-all duration-300"
         >
-          <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400/70 group-hover:bg-emerald-400 group-hover:shadow-[0_0_8px_rgba(52,211,153,0.8)] transition-all" />
+          <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500/80 dark:bg-emerald-400/70 group-hover:bg-emerald-500 dark:group-hover:bg-emerald-400 group-hover:shadow-[0_0_8px_rgba(52,211,153,0.8)] transition-all" />
           <span className="font-light tracking-wide">
             Hidden in plain sight by{" "}
-            <span className="font-medium text-white/75 group-hover:text-white transition-colors">
+            <span className="font-medium text-neutral-700 dark:text-white/75 group-hover:text-neutral-950 dark:group-hover:text-white transition-colors">
               Anandhakrishnan
             </span>
           </span>
-          <ArrowUpRight className="w-3.5 h-3.5 text-white/35 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+          <ArrowUpRight className="w-3.5 h-3.5 text-neutral-400 dark:text-white/35 group-hover:text-neutral-900 dark:group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
         </a>
       </footer>
 
@@ -364,9 +359,9 @@ export function StegoWorkspace() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.96 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-white text-black text-xs font-semibold shadow-2xl"
+            className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black text-xs font-semibold shadow-2xl"
           >
-            <Check className="w-3.5 h-3.5 text-emerald-600" />
+            <Check className="w-3.5 h-3.5 text-emerald-400 dark:text-emerald-600" />
             <span>{toast}</span>
           </motion.div>
         )}
