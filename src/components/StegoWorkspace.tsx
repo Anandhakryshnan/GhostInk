@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   AlertTriangle,
   ArrowUpRight,
+  BookOpen,
   Check,
   Crown,
   Eye,
@@ -15,6 +16,7 @@ import {
 } from "lucide-react";
 import { useSessionState } from "@/lib/sessionPersist";
 import { ChessPanel } from "./ChessPanel";
+import { GuidePanel } from "./GuidePanel";
 import { HidePanel } from "./HidePanel";
 import { RevealPanel } from "./RevealPanel";
 import { ShamirPanel } from "./ShamirPanel";
@@ -22,7 +24,14 @@ import { ThemeToggle } from "./ThemeToggle";
 import { WhisperPanel } from "./WhisperPanel";
 import { XRayInspector } from "./XRayInspector";
 
-type WorkspaceTab = "hide" | "reveal" | "xray" | "shamir" | "chess" | "whisper";
+type WorkspaceTab =
+  | "hide"
+  | "reveal"
+  | "xray"
+  | "shamir"
+  | "chess"
+  | "whisper"
+  | "guide";
 
 const TABS: Array<{
   id: WorkspaceTab;
@@ -35,6 +44,7 @@ const TABS: Array<{
   { id: "shamir", label: "Split Vault", icon: Split },
   { id: "chess", label: "Chess PGN", icon: Crown },
   { id: "whisper", label: "P2P Whisper", icon: Radio },
+  { id: "guide", label: "Guide", icon: BookOpen },
 ];
 
 const subscribeNoop = () => () => {};
@@ -326,6 +336,18 @@ export function StegoWorkspace() {
                 transition={{ duration: 0.2 }}
               >
                 <WhisperPanel onShowToast={showToast} />
+              </motion.div>
+            )}
+
+            {activeTab === "guide" && (
+              <motion.div
+                key="tab-guide"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.2 }}
+              >
+                <GuidePanel onNavigateTab={setActiveTab} />
               </motion.div>
             )}
           </AnimatePresence>
