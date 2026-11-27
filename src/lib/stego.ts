@@ -47,6 +47,7 @@ export const CARRIER_EMOJIS = [
 export type StegoEncoding = "zero-width" | "emoji-vs";
 
 const ZW_REGEX = /[\u200B\u200C\u200D\u2060]/g;
+const ZW_RUN_REGEX = /[\u200B\u200C\u200D\u2060]{2,}/g;
 const VS_REGEX = /[\uFE00-\uFE0F]/g;
 const ALL_HIDDEN_REGEX = /[\u200B\u200C\u200D\u2060\uFE00-\uFE0F]/g;
 
@@ -120,8 +121,16 @@ export function encodeVariationSelectors(bytes: Uint8Array): string {
 }
 
 export function extractZeroWidthChars(text: string): string {
-  const matches = text.match(ZW_REGEX);
-  return matches ? matches.join("") : "";
+  const runs = text.match(ZW_RUN_REGEX);
+  if (!runs || runs.length === 0) return "";
+  // Pick the longest contiguous zero-width sequence so isolated ZWJs inside emojis (e.g. 👨‍💻) are ignored
+  let longest = runs[0];
+  for (let i = 1; i < runs.length; i++) {
+    if (runs[i].length > longest.length) {
+      longest = runs[i];
+    }
+  }
+  return longest;
 }
 
 export function extractVariationSelectors(text: string): string {
@@ -231,7 +240,7 @@ function splitFirstGrapheme(word: string): [string, string] {
  * and mobile OSes do not strip leading/trailing invisible characters.
  */
 export function anchorPayload(coverText: string, hiddenPayload: string): string {
-  const cleanCover = stripAllHiddenChars(coverText);
+  const cleanCover = coverText.replace(ZW_RUN_REGEX, "").replace(VS_REGEX, "");
   const trimmed = cleanCover.trim();
 
   if (!trimmed.length) {

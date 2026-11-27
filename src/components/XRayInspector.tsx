@@ -136,7 +136,7 @@ export function XRayInspector({
             <button
               type="button"
               onClick={handlePaste}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 text-[11px] font-mono uppercase tracking-wider text-neutral-600 dark:text-white/70 hover:text-neutral-950 dark:hover:text-white hover:border-black/20 dark:border-white/25 hover:bg-black/[0.06] dark:bg-white/10 transition-all cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 text-[11px] font-mono uppercase tracking-wider text-neutral-600 dark:text-white/70 hover:text-neutral-950 dark:hover:text-white hover:border-black/25 dark:hover:border-white/25 hover:bg-black/[0.08] dark:hover:bg-white/10 transition-all cursor-pointer"
             >
               <ClipboardPaste className="w-3 h-3" />
               Paste
@@ -148,7 +148,7 @@ export function XRayInspector({
                   onInputChange("");
                   setShowAllTokens(false);
                 }}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 text-[11px] font-mono uppercase tracking-wider text-neutral-500 dark:text-white/55 hover:text-neutral-950 dark:hover:text-white hover:border-black/20 dark:border-white/25 transition-all cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 text-[11px] font-mono uppercase tracking-wider text-neutral-500 dark:text-white/55 hover:text-neutral-950 dark:hover:text-white hover:border-black/25 dark:hover:border-white/25 transition-all cursor-pointer"
               >
                 <Trash2 className="w-3 h-3" />
                 Clear
@@ -165,7 +165,7 @@ export function XRayInspector({
             setShowAllTokens(false);
           }}
           placeholder="Paste any suspicious text to reveal invisible ZWSP, ZWNJ, ZWJ, and WJ code points..."
-          className="w-full rounded-2xl bg-white/80 dark:bg-black/40 border border-black/10 dark:border-white/10 px-4 py-3 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-400 dark:text-white/30 focus:outline-none focus:border-black/30 dark:border-white/35 focus:bg-neutral-100/90 dark:bg-black/60 transition-all resize-y subtle-scroll"
+          className="w-full rounded-2xl bg-white/80 dark:bg-black/40 border border-black/10 dark:border-white/10 px-4 py-3 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-white/30 focus:outline-none focus:border-neutral-900/45 dark:focus:border-white/35 focus:bg-white dark:focus:bg-black/60 transition-all resize-y subtle-scroll"
         />
       </div>
 
@@ -293,7 +293,7 @@ export function XRayInspector({
             <button
               type="button"
               onClick={handleCopySanitized}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/[0.06] dark:bg-white/10 border border-black/15 dark:border-white/15 text-neutral-900 dark:text-white text-xs font-semibold uppercase tracking-wider hover:bg-black/10 dark:bg-white/15 transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/[0.06] dark:bg-white/10 border border-black/15 dark:border-white/15 text-neutral-900 dark:text-white text-xs font-semibold uppercase tracking-wider hover:bg-black/10 dark:hover:bg-white/15 transition-all cursor-pointer"
             >
               {copiedClean ? (
                 <>
@@ -363,7 +363,7 @@ export function XRayInspector({
                 <button
                   type="button"
                   onClick={() => setShowAllTokens(true)}
-                  className="ml-2 inline-flex items-center px-3 py-1 rounded-full bg-black/[0.06] dark:bg-white/10 border border-black/15 dark:border-white/20 text-xs font-mono text-neutral-900 dark:text-white hover:bg-black/15 dark:bg-white/20 transition-colors cursor-pointer"
+                  className="ml-2 inline-flex items-center px-3 py-1 rounded-full bg-black/[0.06] dark:bg-white/10 border border-black/15 dark:border-white/20 text-xs font-mono text-neutral-900 dark:text-white hover:bg-black/15 dark:hover:bg-white/20 transition-colors cursor-pointer"
                 >
                   +{hiddenRemaining.toLocaleString()} more tokens (Show all)
                 </button>

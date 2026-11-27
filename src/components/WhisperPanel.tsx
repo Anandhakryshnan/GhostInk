@@ -834,7 +834,7 @@ export function WhisperPanel({ onShowToast }: WhisperPanelProps) {
               Chat history preserved across refresh ({messages.length}{" "}
               {messages.length === 1 ? "message" : "messages"}).
             </p>
-            <p className="text-amber-700 dark:text-amber-800 dark:text-amber-200/75 font-mono text-[11px]">
+            <p className="text-amber-700 dark:text-amber-200/75 font-mono text-[11px]">
               Browsers close live WebRTC sockets on reload—re-pair below to continue sending.
             </p>
           </div>
@@ -924,7 +924,7 @@ export function WhisperPanel({ onShowToast }: WhisperPanelProps) {
                     value={answerInput}
                     onChange={(e) => setAnswerInput(e.target.value)}
                     placeholder="GHOST-ANSWER-..."
-                    className="w-full rounded-xl bg-white/90 dark:bg-black/50 border border-black/10 dark:border-white/10 p-3 text-[11px] font-mono text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-400 dark:text-white/30 focus:outline-none focus:border-black/30 dark:border-white/35"
+                    className="w-full rounded-xl bg-white/90 dark:bg-black/50 border border-black/10 dark:border-white/10 p-3 text-[11px] font-mono text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-white/30 focus:outline-none focus:border-neutral-900/45 dark:focus:border-white/35"
                   />
                   <button
                     type="button"
@@ -951,7 +951,7 @@ export function WhisperPanel({ onShowToast }: WhisperPanelProps) {
                 value={remoteInviteInput}
                 onChange={(e) => setRemoteInviteInput(e.target.value)}
                 placeholder="GHOST-INVITE-..."
-                className="w-full rounded-xl bg-white/90 dark:bg-black/50 border border-black/10 dark:border-white/10 p-3 text-[11px] font-mono text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-400 dark:text-white/30 focus:outline-none focus:border-black/30 dark:border-white/35"
+                className="w-full rounded-xl bg-white/90 dark:bg-black/50 border border-black/10 dark:border-white/10 p-3 text-[11px] font-mono text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-white/30 focus:outline-none focus:border-neutral-900/45 dark:focus:border-white/35"
               />
               <button
                 type="button"
@@ -1093,7 +1093,7 @@ export function WhisperPanel({ onShowToast }: WhisperPanelProps) {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Filter encrypted messages..."
-                    className="w-full rounded-xl bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 pl-3.5 pr-9 py-2 text-xs text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-400 dark:text-white/35 focus:outline-none focus:border-black/25 dark:border-white/30"
+                    className="w-full rounded-xl bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 pl-3.5 pr-9 py-2 text-xs text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-white/35 focus:outline-none focus:border-neutral-900/40 dark:focus:border-white/30"
                   />
                   {searchQuery && (
                     <button
@@ -1280,7 +1280,7 @@ export function WhisperPanel({ onShowToast }: WhisperPanelProps) {
                               prev === msg.id ? null : msg.id
                             )
                           }
-                          className="p-1 rounded-full hover:bg-black/[0.06] dark:bg-white/10 text-neutral-500 dark:text-white/55 hover:text-neutral-950 dark:hover:text-white cursor-pointer"
+                          className="p-1 rounded-full hover:bg-black/[0.08] dark:hover:bg-white/10 text-neutral-500 dark:text-white/55 hover:text-neutral-950 dark:hover:text-white cursor-pointer"
                         >
                           <Smile className="w-3 h-3" />
                         </button>
@@ -1288,7 +1288,7 @@ export function WhisperPanel({ onShowToast }: WhisperPanelProps) {
                           type="button"
                           aria-label="Reply to message"
                           onClick={() => setReplyingTo(msg)}
-                          className="p-1 rounded-full hover:bg-black/[0.06] dark:bg-white/10 text-neutral-500 dark:text-white/55 hover:text-neutral-950 dark:hover:text-white cursor-pointer"
+                          className="p-1 rounded-full hover:bg-black/[0.08] dark:hover:bg-white/10 text-neutral-500 dark:text-white/55 hover:text-neutral-950 dark:hover:text-white cursor-pointer"
                         >
                           <Reply className="w-3 h-3" />
                         </button>
@@ -1297,7 +1297,7 @@ export function WhisperPanel({ onShowToast }: WhisperPanelProps) {
                             type="button"
                             aria-label="Unsend message"
                             onClick={() => handleUnsendMessage(msg.id)}
-                            className="p-1 rounded-full hover:bg-rose-500/20 text-neutral-500 dark:text-white/50 hover:text-rose-700 dark:text-rose-300 cursor-pointer"
+                            className="p-1 rounded-full hover:bg-rose-500/20 text-neutral-500 dark:text-white/50 hover:text-rose-600 dark:hover:text-rose-300 cursor-pointer"
                           >
                             <Trash2 className="w-3 h-3" />
                           </button>
@@ -1307,7 +1307,7 @@ export function WhisperPanel({ onShowToast }: WhisperPanelProps) {
 
                     {/* Quick Reaction Picker */}
                     {activeReactionMsgId === msg.id && (
-                      <div className="mt-1 inline-flex items-center gap-1 rounded-full bg-neutral-900 dark:bg-white dark:bg-neutral-900 border border-black/15 dark:border-white/15 px-2.5 py-1 shadow-xl">
+                      <div className="mt-1 inline-flex items-center gap-1 rounded-full bg-white dark:bg-neutral-900 border border-black/15 dark:border-white/15 px-2.5 py-1 shadow-xl">
                         {QUICK_REACTIONS.map((emoji) => (
                           <button
                             key={emoji}
@@ -1325,7 +1325,7 @@ export function WhisperPanel({ onShowToast }: WhisperPanelProps) {
                             setActiveReactionMsgId(null);
                             setExpandedReactionMsgId(msg.id);
                           }}
-                          className="p-1 rounded-full hover:bg-black/[0.06] dark:bg-white/10 text-neutral-600 dark:text-white/60 hover:text-neutral-950 dark:hover:text-white cursor-pointer"
+                          className="p-1 rounded-full hover:bg-black/[0.08] dark:hover:bg-white/10 text-neutral-600 dark:text-white/60 hover:text-neutral-950 dark:hover:text-white cursor-pointer"
                         >
                           <Plus className="w-3.5 h-3.5" />
                         </button>
@@ -1435,7 +1435,7 @@ export function WhisperPanel({ onShowToast }: WhisperPanelProps) {
               aria-label="Attach file or image"
               disabled={phase !== "connected"}
               onClick={() => fileInputRef.current?.click()}
-              className="p-2.5 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 text-neutral-600 dark:text-white/70 hover:text-neutral-950 dark:hover:text-white hover:border-black/20 dark:border-white/25 disabled:opacity-40 cursor-pointer"
+              className="p-2.5 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 text-neutral-600 dark:text-white/70 hover:text-neutral-950 dark:hover:text-white hover:border-black/25 dark:hover:border-white/25 disabled:opacity-40 cursor-pointer"
             >
               <Paperclip className="w-4 h-4" />
             </button>
@@ -1444,7 +1444,7 @@ export function WhisperPanel({ onShowToast }: WhisperPanelProps) {
               aria-label="Insert emoji"
               disabled={phase !== "connected"}
               onClick={() => setShowEmojiPicker((prev) => !prev)}
-              className="p-2.5 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 text-neutral-600 dark:text-white/70 hover:text-neutral-950 dark:hover:text-white hover:border-black/20 dark:border-white/25 disabled:opacity-40 cursor-pointer"
+              className="p-2.5 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 text-neutral-600 dark:text-white/70 hover:text-neutral-950 dark:hover:text-white hover:border-black/25 dark:hover:border-white/25 disabled:opacity-40 cursor-pointer"
             >
               <Smile className="w-4 h-4" />
             </button>
@@ -1458,7 +1458,7 @@ export function WhisperPanel({ onShowToast }: WhisperPanelProps) {
                   ? "Send encrypted whisper, file, or reply..."
                   : "Draft saved — re-pair WebRTC tunnel to send..."
               }
-              className="flex-1 min-w-0 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 px-4 py-2.5 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-400 dark:text-white/35 focus:outline-none focus:border-black/30 dark:border-white/35 disabled:opacity-55"
+              className="flex-1 min-w-0 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 px-4 py-2.5 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-white/35 focus:outline-none focus:border-neutral-900/45 dark:focus:border-white/35 disabled:opacity-55"
             />
             <button
               type="submit"

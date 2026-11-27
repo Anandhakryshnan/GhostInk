@@ -286,7 +286,7 @@ export function ChessPanel({ onShowToast }: ChessPanelProps) {
                   type="text"
                   value={whiteName}
                   onChange={(e) => setWhiteName(e.target.value)}
-                  className="w-full rounded-xl bg-white/80 dark:bg-black/40 border border-black/10 dark:border-white/10 px-3.5 py-2 text-sm text-neutral-900 dark:text-white focus:outline-none focus:border-black/30 dark:border-white/35"
+                  className="w-full rounded-xl bg-white/80 dark:bg-black/40 border border-black/10 dark:border-white/10 px-3.5 py-2 text-sm text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-900/45 dark:focus:border-white/35"
                 />
               </div>
               <div className="space-y-1.5">
@@ -301,7 +301,7 @@ export function ChessPanel({ onShowToast }: ChessPanelProps) {
                   type="text"
                   value={blackName}
                   onChange={(e) => setBlackName(e.target.value)}
-                  className="w-full rounded-xl bg-white/80 dark:bg-black/40 border border-black/10 dark:border-white/10 px-3.5 py-2 text-sm text-neutral-900 dark:text-white focus:outline-none focus:border-black/30 dark:border-white/35"
+                  className="w-full rounded-xl bg-white/80 dark:bg-black/40 border border-black/10 dark:border-white/10 px-3.5 py-2 text-sm text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-900/45 dark:focus:border-white/35"
                 />
               </div>
             </div>
@@ -319,7 +319,7 @@ export function ChessPanel({ onShowToast }: ChessPanelProps) {
                 value={secret}
                 onChange={(e) => setSecret(e.target.value)}
                 placeholder="Type a message to transform into a real chess game..."
-                className="w-full rounded-2xl bg-white/80 dark:bg-black/40 border border-black/10 dark:border-white/10 px-4 py-3 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-400 dark:text-white/30 focus:outline-none focus:border-black/30 dark:border-white/35 transition-all resize-y subtle-scroll"
+                className="w-full rounded-2xl bg-white/80 dark:bg-black/40 border border-black/10 dark:border-white/10 px-4 py-3 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-white/30 focus:outline-none focus:border-neutral-900/45 dark:focus:border-white/35 transition-all resize-y subtle-scroll"
               />
             </div>
 
@@ -359,7 +359,7 @@ export function ChessPanel({ onShowToast }: ChessPanelProps) {
                         className={`text-left rounded-xl px-3.5 py-2 border text-xs font-mono transition-all cursor-pointer ${
                           algorithm === cipher.id
                             ? "bg-neutral-900 text-white dark:bg-white dark:text-black border-neutral-900 dark:border-white font-semibold"
-                            : "bg-white/80 dark:bg-black/40 text-neutral-600 dark:text-white/70 border-black/10 dark:border-white/10 hover:border-black/20 dark:border-white/25"
+                            : "bg-white/80 dark:bg-black/40 text-neutral-600 dark:text-white/70 border-black/10 dark:border-white/10 hover:border-black/25 dark:hover:border-white/25"
                         }`}
                       >
                         {cipher.label}
@@ -373,7 +373,7 @@ export function ChessPanel({ onShowToast }: ChessPanelProps) {
                       value={passphrase}
                       onChange={(e) => setPassphrase(e.target.value)}
                       placeholder="Passphrase..."
-                      className="w-full rounded-xl bg-white/90 dark:bg-black/50 border border-black/10 dark:border-white/10 pl-4 pr-11 py-2.5 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-400 dark:text-white/30 focus:outline-none focus:border-black/30 dark:border-white/35"
+                      className="w-full rounded-xl bg-white/90 dark:bg-black/50 border border-black/10 dark:border-white/10 pl-4 pr-11 py-2.5 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-white/30 focus:outline-none focus:border-neutral-900/45 dark:focus:border-white/35"
                     />
                     <button
                       type="button"
@@ -466,7 +466,7 @@ export function ChessPanel({ onShowToast }: ChessPanelProps) {
                         setDecodeError(null);
                         setDecoded(null);
                       }}
-                      className="px-3 py-1.5 rounded-full bg-black/[0.06] dark:bg-white/10 border border-black/15 dark:border-white/15 text-[11px] font-mono text-neutral-900 dark:text-white hover:bg-black/10 dark:bg-white/15 cursor-pointer"
+                      className="px-3 py-1.5 rounded-full bg-black/[0.06] dark:bg-white/10 border border-black/15 dark:border-white/15 text-[11px] font-mono text-neutral-900 dark:text-white hover:bg-black/10 dark:hover:bg-white/15 cursor-pointer"
                     >
                       Test in Decode
                     </button>
@@ -530,7 +530,7 @@ export function ChessPanel({ onShowToast }: ChessPanelProps) {
                   setDecodeError(null);
                 }}
                 placeholder={'[Event "Casual Match 1"]\n1. e4 c5 2. Nf3 ...'}
-                className="w-full rounded-2xl bg-white/80 dark:bg-black/40 border border-black/10 dark:border-white/10 px-4 py-3 text-xs font-mono text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-400 dark:text-white/30 focus:outline-none focus:border-black/30 dark:border-white/35 transition-all resize-y subtle-scroll"
+                className="w-full rounded-2xl bg-white/80 dark:bg-black/40 border border-black/10 dark:border-white/10 px-4 py-3 text-xs font-mono text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-white/30 focus:outline-none focus:border-neutral-900/45 dark:focus:border-white/35 transition-all resize-y subtle-scroll"
               />
             </div>
 
@@ -548,7 +548,7 @@ export function ChessPanel({ onShowToast }: ChessPanelProps) {
                   value={decodePass}
                   onChange={(e) => setDecodePass(e.target.value)}
                   placeholder="Enter passphrase if encrypted..."
-                  className="w-full rounded-xl bg-white/90 dark:bg-black/50 border border-black/10 dark:border-white/10 pl-4 pr-11 py-2.5 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-400 dark:text-white/30 focus:outline-none focus:border-black/30 dark:border-white/35"
+                  className="w-full rounded-xl bg-white/90 dark:bg-black/50 border border-black/10 dark:border-white/10 pl-4 pr-11 py-2.5 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-white/30 focus:outline-none focus:border-neutral-900/45 dark:focus:border-white/35"
                 />
                 <button
                   type="button"

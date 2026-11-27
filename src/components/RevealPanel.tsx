@@ -153,7 +153,7 @@ export function RevealPanel({
             <button
               type="button"
               onClick={handlePaste}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 text-[11px] font-mono uppercase tracking-wider text-neutral-600 dark:text-white/70 hover:text-neutral-950 dark:hover:text-white hover:border-black/20 dark:border-white/25 hover:bg-black/[0.06] dark:bg-white/10 transition-all cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 text-[11px] font-mono uppercase tracking-wider text-neutral-600 dark:text-white/70 hover:text-neutral-950 dark:hover:text-white hover:border-black/25 dark:hover:border-white/25 hover:bg-black/[0.08] dark:hover:bg-white/10 transition-all cursor-pointer"
             >
               <ClipboardPaste className="w-3 h-3" />
               Paste
@@ -162,7 +162,7 @@ export function RevealPanel({
               <button
                 type="button"
                 onClick={handleClear}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 text-[11px] font-mono uppercase tracking-wider text-neutral-500 dark:text-white/55 hover:text-neutral-950 dark:hover:text-white hover:border-black/20 dark:border-white/25 transition-all cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 text-[11px] font-mono uppercase tracking-wider text-neutral-500 dark:text-white/55 hover:text-neutral-950 dark:hover:text-white hover:border-black/25 dark:hover:border-white/25 transition-all cursor-pointer"
               >
                 <Trash2 className="w-3 h-3" />
                 Clear
@@ -180,7 +180,7 @@ export function RevealPanel({
             setRevealed(null);
           }}
           placeholder="Paste text received from chat, email, or social media..."
-          className="w-full rounded-2xl bg-white/80 dark:bg-black/40 border border-black/10 dark:border-white/10 px-4 py-3 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-400 dark:text-white/30 focus:outline-none focus:border-black/30 dark:border-white/35 focus:bg-neutral-100/90 dark:bg-black/60 transition-all resize-y subtle-scroll"
+          className="w-full rounded-2xl bg-white/80 dark:bg-black/40 border border-black/10 dark:border-white/10 px-4 py-3 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-white/30 focus:outline-none focus:border-neutral-900/45 dark:focus:border-white/35 focus:bg-white dark:focus:bg-black/60 transition-all resize-y subtle-scroll"
         />
       </div>
 
@@ -252,7 +252,7 @@ export function RevealPanel({
                     `${detection.hiddenCharCount.toLocaleString()} invisible chars • ${
                       detection.isAligned
                         ? "Invalid header or truncated frame"
-                        : "Bit alignment broken (chars stripped)"
+                        : "Bit alignment broken (chars stripped by messaging app — try Single Emoji or Chess PGN for strict apps)"
                     }`}
                   {detection.status === "none" &&
                     "Zero steganographic Unicode characters (ZWSP/ZWNJ/ZWJ/WJ) detected."}
@@ -306,13 +306,13 @@ export function RevealPanel({
                   }}
                   placeholder="Enter the passphrase used to lock this message..."
                   autoComplete="current-password"
-                  className="w-full rounded-xl bg-white/90 dark:bg-black/50 border border-black/10 dark:border-white/10 pl-4 pr-11 py-3 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-400 dark:text-white/30 focus:outline-none focus:border-black/30 dark:border-white/35 transition-all"
+                  className="w-full rounded-xl bg-white/90 dark:bg-black/50 border border-black/10 dark:border-white/10 pl-4 pr-11 py-3 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-white/30 focus:outline-none focus:border-neutral-900/45 dark:focus:border-white/35 transition-all"
                 />
                 <button
                   type="button"
                   aria-label={showPassphrase ? "Hide passphrase" : "Show passphrase"}
                   onClick={() => setShowPassphrase((prev) => !prev)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg text-neutral-500 dark:text-white/50 hover:text-neutral-950 dark:hover:text-white hover:bg-black/[0.06] dark:bg-white/10 transition-colors cursor-pointer"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg text-neutral-500 dark:text-white/50 hover:text-neutral-950 dark:hover:text-white hover:bg-black/[0.08] dark:hover:bg-white/10 transition-colors cursor-pointer"
                 >
                   {showPassphrase ? (
                     <EyeOff className="w-4 h-4" />
@@ -358,7 +358,7 @@ export function RevealPanel({
         >
           {isDecrypting ? (
             <>
-              <span className="w-4 h-4 border-2 border-black/20 dark:border-white/25 border-t-white dark:border-black/25 dark:border-t-black rounded-full animate-spin" />
+              <span className="w-4 h-4 border-2 border-white/25 border-t-white dark:border-black/25 dark:border-t-black rounded-full animate-spin" />
               <span>Deriving Key &amp; Verifying Tag...</span>
             </>
           ) : (

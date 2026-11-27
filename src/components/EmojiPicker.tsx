@@ -61,7 +61,7 @@ export function EmojiPicker({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search emojis (ghost, lock, fire, heart...)"
-            className="w-full rounded-xl bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 pl-8 pr-7 py-1.5 text-xs text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-400 dark:text-white/35 focus:outline-none focus:border-black/25 dark:border-white/30"
+            className="w-full rounded-xl bg-black/[0.04] dark:bg-white/5 border border-black/10 dark:border-white/10 pl-8 pr-7 py-1.5 text-xs text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-white/35 focus:outline-none focus:border-neutral-900/40 dark:focus:border-white/30"
           />
           {query && (
             <button
@@ -129,7 +129,7 @@ export function EmojiPicker({
                   className={`h-9 rounded-xl text-lg flex items-center justify-center transition-all cursor-pointer ${
                     isSelected
                       ? "bg-black/15 dark:bg-white/20 border border-neutral-900 dark:border-white scale-105"
-                      : "hover:bg-black/[0.06] dark:bg-white/10 active:scale-95"
+                      : "hover:bg-black/[0.08] dark:hover:bg-white/10 active:scale-95"
                   }`}
                 >
                   {item.char}
